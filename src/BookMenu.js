@@ -1,7 +1,7 @@
 import React from 'react'
 
 function BookMenu (props) {
- render () {
+
   return (
    <div className="book-shelf-changer">
     <select>
@@ -13,5 +13,7 @@ function BookMenu (props) {
     </select>
    </div>
   )
- }
+
 }
+
+export default BookMenu

@@ -5,16 +5,18 @@ import BookName from './BookName'
 import BookAuthor from './BookAuthor'
 
 function Book (props) {
-  render() {
+
    return(
    	 <div className="book">
       <div className="book-top">
-        <BookCover>
-        <BookMenu>
+        <BookCover/>
+        <BookMenu/>
       </div>
-      <BookName>
-      <BookAuthor>
+      <BookName/>
+      <BookAuthor/>
      </div>
    )
-  }
+
 }
+
+export default Book
