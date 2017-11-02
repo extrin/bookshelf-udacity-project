@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function BookAuthor (props) {
-
-   return(
-     <div className="book-authors">{props.bookAuthor}</div>
-     )
-
+function BookAuthor(props) {
+  return (
+    <div className="book-authors">
+      {props.bookAuthors.map(author => <span>{author}</span>)}
+    </div>
+  );
 }
 
-export default BookAuthor
+export default BookAuthor;

@@ -12,7 +12,7 @@ function Book(props) {
         <BookMenu bookShelf={props.bookShelf} />
       </div>
       <BookName bookName={props.bookName} />
-      <BookAuthor bookAuthor={props.bookAuthor} />
+      <BookAuthor bookAuthors={props.bookAuthors} />
     </div>
   );
 }
