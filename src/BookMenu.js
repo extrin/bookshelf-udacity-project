@@ -3,7 +3,7 @@ import React from 'react';
 function BookMenu(props) {
   return (
     <div className="book-shelf-changer">
-      <select value={props.bookShelf}>
+      <select defaultValue={props.bookShelf}>
         <option value="none" disabled>
           Move to...
         </option>
