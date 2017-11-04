@@ -9,12 +9,7 @@ function BookShelf(props) {
         <ol className="books-grid">
           {props.books.map(book => (
             <li key={book.id}>
-              <Book
-                coverURL={book.imageLinks.thumbnail}
-                bookShelf={book.shelf}
-                bookName={book.title}
-                bookAuthors={book.authors}
-              />
+              <Book book={book} />
             </li>
           ))}
         </ol>
