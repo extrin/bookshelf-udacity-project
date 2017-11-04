@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as BooksAPI from './BooksAPI';
 
 class BookMenu extends Component {
   static propTypes = {
-    book: PropTypes.object.isRequired
-  };
-
-  state = {
-    book: this.props.book
-  };
-
-  changeShelf = shelf => {
-    this.setState(state => {
-      state.book.shelf = shelf;
-    });
-
-    BooksAPI.update(this.state.book, shelf);
+    book: PropTypes.object.isRequired,
+    onBookMove: PropTypes.func.isRequired
   };
 
   render() {
+    const book = this.props.book;
     return (
       <div className="book-shelf-changer">
         <select
-          defaultValue={this.state.book.shelf}
-          onChange={event => this.changeShelf(event.target.value)}
+          defaultValue={book.shelf}
+          onChange={event => this.props.onBookMove(book, event.target.value)}
         >
           <option value="none" disabled>
             Move to...

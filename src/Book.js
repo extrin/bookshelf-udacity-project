@@ -7,7 +7,8 @@ import BookAuthor from './BookAuthor';
 
 class Book extends Component {
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    onBookMove: PropTypes.func.isRequired
   };
 
   render() {
@@ -15,7 +16,7 @@ class Book extends Component {
       <div className="book">
         <div className="book-top">
           <BookCover coverURL={this.props.book.imageLinks.thumbnail} />
-          <BookMenu book={this.props.book} />
+          <BookMenu book={this.props.book} onBookMove={this.props.onBookMove} />
         </div>
         <BookName bookName={this.props.book.title} />
         <BookAuthor bookAuthors={this.props.book.authors} />

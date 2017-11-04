@@ -14,6 +14,14 @@ class ListBooks extends Component {
     });
   }
 
+  moveBook = (book, bookShelf) => {
+    const newBooks = this.state.books.map(
+      b => (b.id === book.id ? { ...b, shelf: bookShelf } : b)
+    );
+    this.setState(state => ({ books: newBooks }));
+    BooksAPI.update(book, bookShelf);
+  };
+
   render() {
     const books = this.state.books;
 
@@ -27,14 +35,17 @@ class ListBooks extends Component {
             <BookShelf
               shelfTitle="Currently Reading"
               books={books.filter(book => book.shelf === 'currentlyReading')}
+              onBookMove={this.moveBook}
             />
             <BookShelf
               shelfTitle="Want to Read"
               books={books.filter(book => book.shelf === 'wantToRead')}
+              onBookMove={this.moveBook}
             />
             <BookShelf
               shelfTitle="Read"
               books={books.filter(book => book.shelf === 'read')}
+              onBookMove={this.moveBook}
             />
           </div>
         </div>
