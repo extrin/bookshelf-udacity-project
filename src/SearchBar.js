@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 class SearchBar extends Component {
   static propTypes = {
     query: PropTypes.string,
-    updateQuery: PropTypes.func.isRequired
+    updateQuery: PropTypes.func.isRequired,
+    clearQuery: PropTypes.func.isRequired
   };
 
   render() {
@@ -21,6 +22,9 @@ class SearchBar extends Component {
             value={this.props.query}
             onChange={event => this.props.updateQuery(event.target.value)}
           />
+          <button onClick={() => this.props.clearQuery} className="clear-query">
+            Clear
+          </button>
         </div>
       </div>
     );
