@@ -29,18 +29,21 @@ class BooksApp extends React.Component {
   updateQuery = query => {
     const trimmedQuery = query.trim();
     this.setState({ query: trimmedQuery });
-    BooksAPI.search(trimmedQuery, 20).then(tmpBooks => {
-      const booksGot = this.state.booksOnShelves;
-      const books = tmpBooks.map(b => ({
-        booksGot.filter(bk => {bk.id === b.id})
-      } ? {
-        ...b,
-        shelf: book.shelf
-      } : 'none'));
+  	this.updateFoundBooks(this.state.query);
+  };
+
+ updateFoundBooks = query => {
+   BooksAPI.search(query, 20).then(tmpBooks => {
+      const booksPresent = this.state.booksOnShelves;
+      const books = tmpBooks.forEach(b => {
+        booksPresent.forEach(bp => 
+          (bp.id === b.id ? { ...b, shelf: bp.shelf } : b)
+        );
+      });
 
       this.setState({ booksFromSearch: books });
     });
-  };
+ }
 
   clearQuery() {
     this.setState({ query: '' });
