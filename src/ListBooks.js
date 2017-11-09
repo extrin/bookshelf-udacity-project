@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BookShelf from './BookShelf';
 
 class ListBooks extends Component {
-  state = {
-    books: []
-  };
-
-  componentDidMount() {
-    BooksAPI.getAll().then(books => {
-      this.setState({ books });
-    });
-  }
-
-  moveBook = (book, bookShelf) => {
-    const newBooks = this.state.books.map(
-      b => (b.id === book.id ? { ...b, shelf: bookShelf } : b)
-    );
-    this.setState(state => ({ books: newBooks }));
-    BooksAPI.update(book, bookShelf);
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    moveBook: PropTypes.func.isRequired
   };
 
   render() {
-    const books = this.state.books;
+    const { books, moveBook } = this.props;
 
     return (
       <div className="list-books">
@@ -35,17 +22,17 @@ class ListBooks extends Component {
             <BookShelf
               shelfTitle="Currently Reading"
               books={books.filter(book => book.shelf === 'currentlyReading')}
-              onBookMove={this.moveBook}
+              onBookMove={moveBook}
             />
             <BookShelf
               shelfTitle="Want to Read"
               books={books.filter(book => book.shelf === 'wantToRead')}
-              onBookMove={this.moveBook}
+              onBookMove={moveBook}
             />
             <BookShelf
               shelfTitle="Read"
               books={books.filter(book => book.shelf === 'read')}
-              onBookMove={this.moveBook}
+              onBookMove={moveBook}
             />
           </div>
         </div>
