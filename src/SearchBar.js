@@ -23,7 +23,7 @@ class SearchBar extends Component {
             onChange={event => this.props.updateQuery(event.target.value)}
           />
         </div>
-    	<button onClick={() => this.props.clearQuery} className="clear-query" title='Clear query'>
+    	<button onClick={this.props.clearQuery} className="clear-query" title='Clear query'>
         Clear
         </button>
       </div>
