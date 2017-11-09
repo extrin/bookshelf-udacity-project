@@ -27,8 +27,8 @@ class BooksApp extends React.Component {
       newBooks = this.state.booksOnShelves;
       newBooks.push(newBook);
     } else {
-      newBooks = this.state.booksOnShelves.map(b => 
-        (b.id === book.id ? { ...b, shelf: bookShelf } : b)
+      newBooks = this.state.booksOnShelves.map(
+        b => (b.id === book.id ? { ...b, shelf: bookShelf } : b)
       );
     }
     this.setState({ booksOnShelves: newBooks });
@@ -38,33 +38,33 @@ class BooksApp extends React.Component {
   updateQuery = query => {
     const trimmedQuery = query.trim();
     this.setState({ query: trimmedQuery });
-  	this.updateFoundBooks( trimmedQuery );
-  }
+    this.updateFoundBooks(trimmedQuery);
+  };
 
   clearQuery = () => {
     this.setState({ query: '' });
     this.updateFoundBooks('');
-  }
+  };
 
- updateFoundBooks = query => {
-   if (query !== '') {
-   BooksAPI.search(query, 20).then(tmpBooks => {
-      const booksPresent = this.state.booksOnShelves;
-      const books = tmpBooks.map(b => {
-        let bookPresent = booksPresent.find(bp => bp.id === b.id);
-        if (bookPresent == null) {
-          b.shelf = 'none'         
-        } else {
-          b.shelf = bookPresent.shelf;
-        }
-        return b;
+  updateFoundBooks = query => {
+    if (query !== '') {
+      BooksAPI.search(query, 20).then(tmpBooks => {
+        const booksPresent = this.state.booksOnShelves;
+        const books = tmpBooks.map(b => {
+          let bookPresent = booksPresent.find(bp => bp.id === b.id);
+          if (bookPresent == null) {
+            b.shelf = 'none';
+          } else {
+            b.shelf = bookPresent.shelf;
+          }
+          return b;
+        });
+        this.setState({ booksFromSearch: books });
       });
-      this.setState({ booksFromSearch: books });
-    });
-   } else {
-     this.setState({ booksFromSearch: [] });
-   }
- }
+    } else {
+      this.setState({ booksFromSearch: [] });
+    }
+  };
 
   render() {
     return (
