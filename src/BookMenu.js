@@ -12,7 +12,7 @@ class BookMenu extends Component {
     return (
       <div className="book-shelf-changer">
         <select
-          defaultValue={book.shelf || 'none'}
+          defaultValue={book.shelf}
           onChange={event => this.props.onBookMove(book, event.target.value)}
         >
           <option value="moveTo" disabled>
