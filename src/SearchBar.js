@@ -22,10 +22,10 @@ class SearchBar extends Component {
             value={this.props.query}
             onChange={event => this.props.updateQuery(event.target.value)}
           />
-          <button onClick={() => this.props.clearQuery} className="clear-query">
-            Clear
-          </button>
         </div>
+    	<button onClick={this.props.clearQuery} className="clear-query" title='Clear query'>
+        Clear
+        </button>
       </div>
     );
   }
